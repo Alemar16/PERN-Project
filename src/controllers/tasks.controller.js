@@ -44,6 +44,15 @@ export const updateTask = (req, res) => {
   res.send("Actualizando tarea unica");
 };
 
-export const deleteTask = (req, res) => {
-  res.send("Eliminando tarea");
+export const deleteTask = async (req, res) => {
+  const result = await pool.query('DELETE FROM task WHERE id = $1', [req.params.id]
+  );
+  console.log(result);
+  if (result.rowCount === 0) {
+    return res.status(404).json({
+      message: "No existe una tarea  con ese id",
+    });
+  }
+
+  return res.send(204);
 };
