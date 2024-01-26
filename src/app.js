@@ -9,7 +9,7 @@ const app = express();
 //middlewares
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
 
 //routes
 app.get("/", (req, res) => {
@@ -25,4 +25,4 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
-export default app;  
+export default app;
