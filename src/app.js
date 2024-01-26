@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.json({ message: "welcome to my app" });
 });
 app.use("/api", taskRoutes);
-app.use("/api",authRoutes);
+app.use("/api", authRoutes);
 
 //error handler
 app.use((err, req, res, next) => {
