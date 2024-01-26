@@ -14,6 +14,6 @@ router.post("/signup", postSignup);
 
 router.post("/signout", postSignout);
 
-router.ger("/profile", getProfile);
+router.get("/profile", getProfile);
 
 export default router;
