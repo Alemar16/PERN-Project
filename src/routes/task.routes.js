@@ -1,6 +1,6 @@
-import { Router } from "express";
+import Router  from "express-promise-router";
 import {
-  getTasks,
+  getAllTasks,
   getTask,
   createTask,
   updateTask,
@@ -9,7 +9,7 @@ import {
 
 const router = Router();
 
-router.get("/tasks", getTasks);
+router.get("/tasks", getAllTasks);
 
 router.get("/tasks/:id", getTask);
 
@@ -20,3 +20,4 @@ router.put("/tasks/:id", updateTask);
 router.delete("/tasks/:id", deleteTask);
 
 export default router;
+ 
