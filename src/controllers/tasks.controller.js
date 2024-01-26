@@ -18,6 +18,3 @@ export const deleteTask = (req, res) => {
     res.send("Eliminando tarea");
 }
 
-export const getProfile = (req, res) => {
-    res.send("Perfil de usuario");
-  }

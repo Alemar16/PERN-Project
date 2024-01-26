@@ -20,6 +20,4 @@ router.put("/tasks/:id", updateTask);
 
 router.delete("/tasks/:id", deleteTask);
 
-router.get("/profile", getProfile);
-
 export default router;

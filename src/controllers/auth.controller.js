@@ -9,3 +9,7 @@ export const postSignup = (req, res) => {
 export const postSignout = (req, res) => {
   res.send("Cerrando sesion");
 };
+
+export const getProfile = (req, res) => {
+    res.send("Perfil de usuario");
+}
