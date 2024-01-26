@@ -5,8 +5,16 @@ export const getAllTasks = async (req, res) => {
   return res.json(result.rows);
 };
 
-export const getTask = (req, res) => {
-  res.send("Obteniendo una tarea unica");
+export const getTask = async (req, res) => {
+  const result = await pool.query("SELECT * FROM task WHERE id = $1", [req.params.id,
+]);
+
+  if (result.rowCount === 0) {
+    return res.status(404).json({
+      message: "No existe una tarea  con ese id",
+    });
+  }
+  return res.json(result.rows[0]);
 };
 
 export const createTask = async (req, res, next) => {
