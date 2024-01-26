@@ -1,15 +1,15 @@
-export const postSignin = (req, res) => {
+export const signin = (req, res) => {
   res.send("Iniciando sesion");
 };
 
-export const postSignup = (req, res) => {
+export const signup = (req, res) => {
   res.send("Registrando usuario");
 };
 
-export const postSignout = (req, res) => {
+export const signout = (req, res) => {
   res.send("Cerrando sesion");
 };
 
-export const getProfile = (req, res) => {
+export const profile = (req, res) => {
     res.send("Perfil de usuario");
 }
