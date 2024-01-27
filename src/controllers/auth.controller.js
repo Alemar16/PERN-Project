@@ -36,7 +36,7 @@ export const signin = async (req, res) => {
 };
 
 //sign up
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {
@@ -68,6 +68,7 @@ export const signup = async (req, res) => {
         message: "Ya existe un usuario con ese correo",
       });
     }
+    next(error);
   }
 };
 
