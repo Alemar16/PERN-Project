@@ -72,8 +72,10 @@ export const signup = async (req, res) => {
   }
 };
 
+//sign out
 export const signout = (req, res) => {
-  res.send("Cerrando sesion");
+  res.clearCookie("token");
+  res.sendStatus(200);
 };
 
 export const profile = (req, res) => {
