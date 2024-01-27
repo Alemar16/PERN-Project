@@ -24,11 +24,11 @@ export const createTask = async (req, res, next) => {
   //db insert
   try {
     const result = await pool.query(
-      "INSERT INTO task(title, description) VALUES($1, $2) RETURNING *",
-      [title, description]
+      "INSERT INTO task(title, description, user_id) VALUES($1, $2, $3) RETURNING *",
+      [title, description, req.user_id]
     );
 
-    //se puede insertar otras querys a partir de aqui
+    // se pueden agregar otras consultas a partir de aquí
 
     res.json(result.rows[0]);
   } catch (error) {
@@ -41,6 +41,7 @@ export const createTask = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export const updateTask = async (req, res) => {
   const id = req.params.id;
