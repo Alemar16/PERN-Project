@@ -35,7 +35,6 @@ export const signin = async (req, res) => {
   return res.json(result.rows[0]);
 };
 
-
 //sign up
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
@@ -78,6 +77,9 @@ export const signout = (req, res) => {
   res.sendStatus(200);
 };
 
-export const profile = (req, res) => {
-  res.send("Perfil de usuario");
+export const profile = async (req, res) => {
+  const result = await pool.query("SELECT * FROM users WHERE id = $1", [
+    req.userId,
+  ])
+  return res.json(result.rows[0]);
 };
