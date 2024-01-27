@@ -23,10 +23,13 @@ export const signup = async (req, res) => {
     //generar token
     const token = await createAccessToken({ id: result.rows[0].id });
 
-    //return res.json(result.rows[0]);
-    return res.json({
-      token: token,
+    res.cookie("token", token, {
+      httpOnly: true,
+      //secure: true,
+      maxAge: 24 * 60 * 60 * 1000, //1 dia
     });
+
+    return res.json(result.rows[0]);
 
     //manejo de errores
   } catch (error) {
