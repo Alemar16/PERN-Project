@@ -1,8 +1,7 @@
 import { Input, Card, Button, Label } from "../components/ui";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import axios from "axios";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function RegisterPage() {
   const {
@@ -10,12 +9,13 @@ function RegisterPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
-   const res = await axios.post("http://localhost:3000/api/signup", data, {
-    withCredentials: true,
-   })
-   console.log(res)
+    await signup(data);
+    navigate("/profile");
+
   });
 
   return (
@@ -46,14 +46,19 @@ function RegisterPage() {
           {errors.password && (
             <p className="text-red-500">Password is required</p>
           )}
-<div className="flex justify-center mt-5">
-<Button>Register</Button>
-</div>
-<div className="text-center mt-5">
-  <p className="mb-2">Already have an account?</p>
-  <Link to="/login" className="text-blue-500 mx-auto transition duration-300 hover:text-blue-700"> Sign in</Link>
-</div>
-          
+          <div className="flex justify-center mt-5">
+            <Button>Register</Button>
+          </div>
+          <div className="text-center mt-5">
+            <p className="mb-2">Already have an account?</p>
+            <Link
+              to="/login"
+              className="text-blue-500 mx-auto transition duration-300 hover:text-blue-700"
+            >
+              {" "}
+              Sign in
+            </Link>
+          </div>
         </form>
       </Card>
     </div>
