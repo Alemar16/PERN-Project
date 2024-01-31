@@ -1,6 +1,8 @@
 // AuthContext.jsx
 import { createContext, useState, useContext } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+
 
 export const AuthContext = createContext();
 
@@ -16,6 +18,23 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
   const [errors, setErrors] = useState(null);
+
+const signup = async (data) => {
+  const res = await axios.post("http://localhost:3000/api/signup", data, {
+    withCredentials: true,
+   })
+   console.log(res.data)
+   setUser(res.data)
+}
+
+  const signin = async (data) => {
+    const res = await axios.post("http://localhost:3000/api/signin", data, {
+      withCredentials: true,
+    });
+    console.log(res.data);
+    setUser(res.data);
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -24,7 +43,9 @@ export function AuthProvider({ children }) {
         isAuth,
         setIsAuth,
         errors,
-        setErrors
+        setErrors,
+        signup,
+        signin
       }}
     >
       {children}
@@ -36,4 +57,4 @@ AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// Solo exporta AuthProvider y useAuth
+
